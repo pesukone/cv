@@ -14,7 +14,7 @@
   let dateOfLatestCommit
 
   onMount(async () => {
-    const res = await fetch("https://api.github.com/repos/ko-osakunta/osakunta/commits", {
+    const res = await fetch("https://api.github.com/repos/pesukone/cv/commits", {
       headers: headers
     })
 
@@ -26,7 +26,6 @@
 
 <style>
 </style>
-
 <h1>
   Curriculum Vitae - Jussi Aalto
   {dateOfLatestCommit ? dateOfLatestCommit.toLocaleDateString("fi-FI") : ""}
