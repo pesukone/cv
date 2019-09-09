@@ -1,6 +1,5 @@
 <script>
   import { onMount } from "svelte"
-  import Scroller from "@sveltejs/svelte-scroller"
 
   import Education from "./Education.svelte"
   import Projects from "./Projects.svelte"
