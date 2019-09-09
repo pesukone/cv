@@ -2,6 +2,9 @@
 </script>
 
 <style>
+  ol li {
+    list-style-type: disc;
+  }
 </style>
 
 <h2>Koulutus</h2>
