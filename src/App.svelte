@@ -1,5 +1,6 @@
 <script>
   import { onMount } from "svelte"
+  import { locale, dictionary, getClientLocale, _ } from "svelte-i18n"
 
   import Education from "./Education.svelte"
   import Projects from "./Projects.svelte"
@@ -21,6 +22,30 @@
     
     dateOfLatestCommit = new Date(array[0].commit.author.date)
   })
+
+  locale.set(
+    getClientLocale({
+      fallback: "fi",
+      navigator: true,
+      search: 'lang',
+      hash: 'locale'
+    })
+  )
+
+  dictionary.set({
+    fi: {
+      email: "sähköposti",
+      phone: "puhelin",
+      education: "koulutus",
+      highschool: "Ylioppilas, Etelä-Tapiolan luokio",
+    },
+    en: {
+      email: "email",
+      phone: "phone",
+      education: "education",
+      highschool: "Upper secondary education, Etelä-Tapiolan lukio"
+    }
+  })
 </script>
 
 <style>
@@ -32,9 +57,9 @@
 
 Github: <a href="https://www.github.com/pesukone">https://www.github.com/pesukone</a>
 <br>
-Sähköposti: <a href="mailto:j.v.aalto@gmail.com">j.v.aalto@gmail.com</a>
+{$_.capital("email")}: <a href="mailto:j.v.aalto@gmail.com">j.v.aalto@gmail.com</a>
 <br>
-Puhelin: 0500925583
+{$_.capital("phone")}: +358500925583
 
 <section><Education /></section>
 
