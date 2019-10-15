@@ -23,14 +23,14 @@
     dateOfLatestCommit = new Date(array[0].commit.author.date)
   })
 
-  locale.set(
-    getClientLocale({
-      fallback: "fi",
-      navigator: true,
-      search: 'lang',
-      hash: 'locale'
-    })
-  )
+  const localeCode = getClientLocale({
+    fallback: "fi",
+    navigator: true,
+    search: "locale",
+    hash: "locale"
+  })
+
+  locale.set(localeCode)
 
   dictionary.set({
     fi: {
@@ -50,9 +50,10 @@
 
 <style>
 </style>
+
 <h1>
   Curriculum Vitae - Jussi Aalto
-  {dateOfLatestCommit ? dateOfLatestCommit.toLocaleDateString("fi-FI") : ""}
+  {dateOfLatestCommit ? $_.date(dateOfLatestCommit) : ""}
 </h1>
 
 Github: <a href="https://www.github.com/pesukone">https://www.github.com/pesukone</a>
