@@ -16,7 +16,9 @@
         native: "äidinkieli",
         fluent: "erinomainen",
         basic: "tyydyttävä"
-      }
+      },
+      military: "varusmiespalvelus: kersantti, PSVIESTIK, Panssariprikaati, 2016",
+      badminton: "tykkään sulkapallosta"
     },
     en: {
       ...dict.en,
@@ -32,7 +34,9 @@
         native: "native",
         fluent: "fluent",
         basic: "basic"
-      }
+      },
+      military: "",
+      badminton: "I enjoy playing badminton"
     }
   }))
 </script>
@@ -51,6 +55,8 @@
       <li>{$_("language.french")}: {$_("levels.basic")}</li>
     </ul>
   </li>
-  <li>Varusmiespalvelus: kersantti, PSVIESTIK, Panssariprikaati, 2016</li>
-  <li>Tykkään sulkapallosta</li>
+  {#if $_("military") !== "military"}
+    <li>{$_.capital("military")}</li>
+  {/if}
+  <li>{$_.capital("badminton")}</li>
 </ul>
