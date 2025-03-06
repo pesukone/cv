@@ -11,19 +11,19 @@ use leptos_router::{
 
 pub fn shell(options: LeptosOptions) -> impl IntoView {
   view! {
-      <!DOCTYPE html> 
-      <html lang="en">
-          <head>
-              <meta charset="utf-8" />
-              <meta name="viewport" content="width=device-width, initial-scale=1" />
-              <AutoReload options=options.clone() />
-              <HydrationScripts options islands=true />
-              <MetaTags />
-          </head>
-          <body>
-              <App />
-          </body>
-      </html>
+    <!DOCTYPE html> 
+    <html lang="en">
+      <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <AutoReload options=options.clone() />
+        <HydrationScripts options islands=true />
+        <MetaTags />
+      </head>
+      <body>
+        <App />
+      </body>
+    </html>
   }
 }
 
@@ -33,32 +33,32 @@ pub fn App() -> impl IntoView {
   provide_meta_context();
 
   view! {
-      <Title text="CV" />
+    <Title text="CV" />
 
-      <Stylesheet id="leptos" href="/pkg/cv.css" />
+    <Stylesheet id="leptos" href="/pkg/cv.css" />
 
-      // content for this welcome page
-      <I18nContextProvider>
-          <Router>
-              <main>
-                  <Routes fallback=|| "Page not found.".into_view()>
-                      <Route path=StaticSegment("") view=CV />
-                  </Routes>
-              </main>
-          </Router>
-      </I18nContextProvider>
+    // content for this welcome page
+    <I18nContextProvider>
+      <Router>
+        <main>
+          <Routes fallback=|| "Page not found.".into_view()>
+            <Route path=StaticSegment("") view=CV />
+          </Routes>
+        </main>
+      </Router>
+    </I18nContextProvider>
   }
 }
 
 #[component]
 fn CV() -> impl IntoView {
   view! {
-      <div class="flex flex-col text-center">
-          <h1>"CV"</h1>
-          <SwitchLang />
-          <ParamTest />
-          <Skills />
-      </div>
+    <div class="flex flex-col gap-2 text-center">
+      <h1>"CV"</h1>
+      <SwitchLang />
+      <ParamTest />
+      <Skills />
+    </div>
   }
 }
 
@@ -104,12 +104,12 @@ fn SwitchLang() -> impl IntoView {
   };
 
   view! {
-      <A
-          href=format!("/?lang={}", lang)
-          attr:class="text-medium text-blue-600 dark:text-blue-500 hover:underline"
-      >
-          {t!(i18n, test_msg)}
-      </A>
+    <A
+      href=format!("/?lang={}", lang)
+      attr:class="text-medium text-blue-600 dark:text-blue-500 hover:underline"
+    >
+      {t!(i18n, test_msg)}
+    </A>
   }
 }
 
@@ -134,7 +134,9 @@ fn Skills() -> impl IntoView {
     "Go",
     "Rust",
   ]
-  .join(" ");
+  .iter()
+  .map(|skill| view! { <div>{skill.to_string()}</div> })
+  .collect_view();
 
-  view! { <div class="flex">{skills}</div> }
+  view! { <div class="flex flex-row gap-1 animate-slide-in">{skills}</div> }
 }

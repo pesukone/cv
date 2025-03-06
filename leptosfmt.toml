@@ -1,0 +1,5 @@
+tab_spaces = 2
+newline_style = "Unix"
+
+[attr_values]
+class = "Tailwind"
