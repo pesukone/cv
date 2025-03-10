@@ -36,11 +36,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1741268111,
-        "narHash": "sha256-ah5+brbdz2KP8qNEU4hjruBiPDUquQzJv5bSOB/jwKE=",
+        "lastModified": 1741600319,
+        "narHash": "sha256-9FFVNwzBlt6rYSKDTQk5F9XUZaX4U1vQLk969Hvz6OU=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "4ebae9c99fc1196b81fa3729786ba42deee2cf9c",
+        "rev": "daa638c9dbd3637a00ecf3bdfd75fe53ccbdb861",
         "type": "github"
       },
       "original": {
@@ -70,7 +70,8 @@
         "cargo-leptos-src": "cargo-leptos-src",
         "flake-utils": "flake-utils",
         "nixpkgs": "nixpkgs",
-        "rust-overlay": "rust-overlay"
+        "rust-overlay": "rust-overlay",
+        "tailwind-src": "tailwind-src"
       }
     },
     "rust-overlay": {
@@ -78,11 +79,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1741228283,
-        "narHash": "sha256-VzqI+k/eoijLQ5am6rDFDAtFAbw8nltXfLBC6SIEJAE=",
+        "lastModified": 1741573199,
+        "narHash": "sha256-A2sln1GdCf+uZ8yrERSCZUCqZ3JUlOv1WE2VFqqfaLQ=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "38e9826bc4296c9daf18bc1e6aa299f3e932a403",
+        "rev": "c777dc8a1e35407b0e80ec89817fe69970f4e81a",
         "type": "github"
       },
       "original": {
@@ -104,6 +105,18 @@
         "owner": "nix-systems",
         "repo": "default",
         "type": "github"
+      }
+    },
+    "tailwind-src": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-wA6MQkioR23dxNu4n6gWYKc/Hp6OZv6gFMz9uJyw5IE=",
+        "type": "file",
+        "url": "https://github.com/tailwindlabs/tailwindcss/releases/download/v4.0.12/tailwindcss-linux-x64"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/tailwindlabs/tailwindcss/releases/download/v4.0.12/tailwindcss-linux-x64"
       }
     }
   },

@@ -9,6 +9,10 @@
       url = "github:leptos-rs/cargo-leptos";
       flake = false;
     };
+    tailwind-src = {
+      url = "https://github.com/tailwindlabs/tailwindcss/releases/download/v4.0.12/tailwindcss-linux-x64";
+      flake = false;
+    };
   };
 
   outputs =
@@ -18,6 +22,7 @@
       flake-utils,
       rust-overlay,
       cargo-leptos-src,
+      tailwind-src,
     }:
     flake-utils.lib.eachDefaultSystem (
       system:
@@ -53,6 +58,31 @@
       rec {
         flakedPkgs = pkgs;
 
+        packages.tailwindcss_4 = pkgs.stdenv.mkDerivation {
+          name = "tailwindcss";
+          src = tailwind-src;
+
+          nativeBuildInputs = with pkgs; [
+            autoPatchelfHook
+            makeWrapper
+          ];
+
+          dontUnpack = true;
+          dontBuild = true;
+          dontStrip = true;
+
+          installPhase = ''
+            mkdir -p $out/bin
+            install -m755 $src $out/bin/tailwindcss
+          '';
+
+          postFixup = ''
+            wrapProgram $out/bin/tailwindcss --prefix LD_LIBRARY_PATH : ${
+              pkgs.lib.makeLibraryPath [ pkgs.stdenv.cc.cc.lib ]
+            }
+          '';
+        };
+
         devShell = pkgs.mkShell {
           buildInputs = with pkgs; [
             (pkgs.rust-bin.selectLatestNightlyWith (
@@ -63,7 +93,7 @@
               }
             ))
             cargo-leptos
-            tailwindcss_4
+            packages.tailwindcss_4
             sass
           ];
         };
