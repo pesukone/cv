@@ -11,18 +11,21 @@
       transform: rotate(3deg);
     }
   }
+}
 
-  --animate-slide-in: 3s slide-in;
+@utility slide-* {
+  animation: --value(integer)s slide-in;
+  background-color: red;
+}
 
-  @keyframes slide-in {
-    from {
-      translate: 150vw 0;
-      scale: 200% 1;
-    }
+@keyframes slide-in {
+  from {
+    translate: 150vw 0;
+    scale: 200% 1;
+  }
 
-    to {
-      translate: 0 0;
-      scale: 100% 1;
-    }
+  to {
+    translate: 0 0;
+    scale: 100% 1;
   }
 }

@@ -1,4 +1,6 @@
 use crate::i18n::*;
+use leptos::html;
+use leptos::leptos_dom::logging::console_log;
 use leptos::logging::log;
 use leptos::prelude::*;
 use leptos_meta::{provide_meta_context, MetaTags, Stylesheet, Title};
@@ -8,6 +10,9 @@ use leptos_router::{
   params::Params,
   StaticSegment,
 };
+use std::collections::HashMap;
+use std::iter::zip;
+use std::time::Duration;
 
 pub fn shell(options: LeptosOptions) -> impl IntoView {
   view! {
@@ -113,8 +118,18 @@ fn SwitchLang() -> impl IntoView {
   }
 }
 
-#[component]
+fn display_class(class: &str) -> &str {
+  match class {
+    "hidden" => "hidden slide-2",
+    "block" => "block slide-2",
+    _ => "hidden slide-2",
+  }
+}
+
+#[island]
 fn Skills() -> impl IntoView {
+  let (animating, set_animating) = signal(None);
+
   let skills = vec![
     "JavaScript",
     "TypeScript",
@@ -133,10 +148,38 @@ fn Skills() -> impl IntoView {
     "C++",
     "Go",
     "Rust",
-  ]
-  .iter()
-  .map(|skill| view! { <div>{skill.to_string()}</div> })
-  .collect_view();
+  ];
 
-  view! { <div class="flex flex-row gap-1 animate-slide-in">{skills}</div> }
+  Effect::new(move |_| {
+    set_timeout(
+      move || {
+        set_animating(Some(0));
+      },
+      Duration::from_secs(1),
+    );
+  });
+
+  let skill_components = skills
+    .iter()
+    .enumerate()
+    .map(|(idx, skill)| {
+      view! {
+        <div
+          class=move || {
+              display_class(
+                  match animating() {
+                      None => "hidden",
+                      Some(i) => if i >= idx { "block" } else { "hidden" }
+                  },
+              )
+          }
+          on:animationend=move |_| set_animating(Some(idx + 1))
+        >
+          {skill.to_string()}
+        </div>
+      }
+    })
+    .collect_view();
+
+  view! { <div class="flex flex-row gap-1">{skill_components}</div> }
 }
