@@ -1,4 +1,5 @@
 pub mod app;
+pub mod skills;
 
 leptos_i18n::load_locales!();
 
