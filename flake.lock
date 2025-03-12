@@ -3,11 +3,11 @@
     "cargo-leptos-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1740173929,
-        "narHash": "sha256-y1kja9KR39svIbvKdeMhRE2lQYYvtNAzbXQ5Zl1Ivtk=",
+        "lastModified": 1741740520,
+        "narHash": "sha256-vr1wBON1Mtuqowu0zRNjmdcCl6MfB1mgkqb8BRSalPY=",
         "owner": "leptos-rs",
         "repo": "cargo-leptos",
-        "rev": "bc2257c8ac2a979eafd529e15bfd36dc5dcca724",
+        "rev": "462d59d1dbabadcecd06eda5b1dd3c7af70839f9",
         "type": "github"
       },
       "original": {
@@ -32,6 +32,42 @@
         "owner": "numtide",
         "repo": "flake-utils",
         "type": "github"
+      }
+    },
+    "flake-utils_2": {
+      "inputs": {
+        "systems": "systems_2"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "leptosfmt-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1738584774,
+        "narHash": "sha256-HxLPweUIyFzghhq+r3ZRsIMVMJ5b4pmTOIKK3EukvoE=",
+        "ref": "refs/heads/main",
+        "rev": "1b6d9ada37655856a81cdb361b43b3bde10bbe1a",
+        "revCount": 227,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/bram209/leptosfmt"
+      },
+      "original": {
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/bram209/leptosfmt"
       }
     },
     "nixpkgs": {
@@ -67,10 +103,10 @@
     },
     "root": {
       "inputs": {
-        "cargo-leptos-src": "cargo-leptos-src",
         "flake-utils": "flake-utils",
         "nixpkgs": "nixpkgs",
         "rust-overlay": "rust-overlay",
+        "rust-tools": "rust-tools",
         "tailwind-src": "tailwind-src"
       }
     },
@@ -92,7 +128,47 @@
         "type": "github"
       }
     },
+    "rust-tools": {
+      "inputs": {
+        "cargo-leptos-src": "cargo-leptos-src",
+        "flake-utils": "flake-utils_2",
+        "leptosfmt-src": "leptosfmt-src",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "dir": "rust",
+        "lastModified": 1741786397,
+        "narHash": "sha256-0R2PxwvUnt/2nsaFfOJHOPHXrH1zOebzDg2oYKJWrYU=",
+        "owner": "pesukone",
+        "repo": "flakes",
+        "rev": "5c25255310aac258b83561f9f22b450611dff313",
+        "type": "github"
+      },
+      "original": {
+        "dir": "rust",
+        "owner": "pesukone",
+        "repo": "flakes",
+        "type": "github"
+      }
+    },
     "systems": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_2": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
