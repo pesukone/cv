@@ -1,35 +1,29 @@
 use crate::i18n::*;
 use crate::skills::Skills;
-use leptos::html;
-use leptos::leptos_dom::logging::console_log;
-use leptos::logging::log;
 use leptos::prelude::*;
 use leptos_meta::{provide_meta_context, MetaTags, Stylesheet, Title};
 use leptos_router::{
   components::{Route, Router, Routes, A},
-  hooks::{use_navigate, use_query},
+  hooks::use_query,
   params::Params,
   StaticSegment,
 };
-use std::collections::HashMap;
-use std::iter::zip;
-use std::time::Duration;
 
 pub fn shell(options: LeptosOptions) -> impl IntoView {
   view! {
-      <!DOCTYPE html> 
-      <html lang="en">
-          <head>
-              <meta charset="utf-8" />
-              <meta name="viewport" content="width=device-width, initial-scale=1" />
-              <AutoReload options=options.clone() />
-              <HydrationScripts options islands=true />
-              <MetaTags />
-          </head>
-          <body>
-              <App />
-          </body>
-      </html>
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <AutoReload options=options.clone() />
+        <HydrationScripts options islands=true />
+        <MetaTags />
+      </head>
+      <body>
+        <App />
+      </body>
+    </html>
   }
 }
 
@@ -39,32 +33,34 @@ pub fn App() -> impl IntoView {
   provide_meta_context();
 
   view! {
-      <Title text="CV" />
+    <Title text="CV" />
 
-      <Stylesheet id="leptos" href="/pkg/cv.css" />
+    <Stylesheet id="leptos" href="/pkg/cv.css" />
 
-      // content for this welcome page
-      <I18nContextProvider>
-          <Router>
-              <main>
-                  <Routes fallback=|| "Page not found.".into_view()>
-                      <Route path=StaticSegment("") view=CV />
-                  </Routes>
-              </main>
-          </Router>
-      </I18nContextProvider>
+    // content for this welcome page
+    <I18nContextProvider>
+      <Router>
+        <main>
+          <Routes fallback=|| "Page not found.".into_view()>
+            <Route path=StaticSegment("") view=CV />
+          </Routes>
+        </main>
+      </Router>
+    </I18nContextProvider>
   }
 }
 
 #[component]
 fn CV() -> impl IntoView {
   view! {
-      <div class="flex flex-col gap-2 text-center">
-          <h1>"CV"</h1>
-          <SwitchLang />
-          <ParamTest />
-          <Skills />
-      </div>
+    <div class="flex flex-col gap-2 items-center">
+      <h1>"CV"</h1>
+      <SwitchLang />
+      <ParamTest />
+      <Skills />
+      <Certificates />
+      <Education />
+    </div>
   }
 }
 
@@ -110,11 +106,32 @@ fn SwitchLang() -> impl IntoView {
   };
 
   view! {
-      <A
-          href=format!("/?lang={}", lang)
-          attr:class="text-medium text-blue-600 dark:text-blue-500 hover:underline"
-      >
-          {t!(i18n, test_msg)}
-      </A>
+    <A
+      href=format!("/?lang={}", lang)
+      attr:class="text-medium text-blue-600 dark:text-blue-500 hover:underline"
+    >
+      {t!(i18n, test_msg)}
+    </A>
+  }
+}
+
+#[component]
+fn Certificates() -> impl IntoView {
+  view! {
+    <div class="w-1/3 border">
+      <h2>Google cloud developer vai mikä olikaan</h2>
+      <h3>6.9.2069</h3>
+      <div>joku kuva/ikoni tähän</div>
+    </div>
+  }
+}
+
+#[component]
+fn Education() -> impl IntoView {
+  view! {
+    <ul>
+      <li>LuK, tietojenkäsittelytiede, Helsingin yliopisto x.x.2019</li>
+      <li>Etelä-Tapiolan lukio x.x.2015</li>
+    </ul>
   }
 }

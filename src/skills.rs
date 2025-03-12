@@ -32,6 +32,7 @@ pub fn Skills() -> impl IntoView {
     "C++",
     "Go",
     "Rust",
+    "Tailwind",
   ];
 
   Effect::new(move |_| {
@@ -43,27 +44,51 @@ pub fn Skills() -> impl IntoView {
     );
   });
 
-  let skill_components = skills
-    .iter()
-    .enumerate()
-    .map(|(idx, skill)| {
-      view! {
-        <div
-          class=move || {
-              display_class(
-                  match animating() {
-                      None => "hidden",
-                      Some(i) => if i >= idx { "block" } else { "hidden" }
-                  },
-              )
-          }
-          on:animationend=move |_| set_animating(Some(idx + 1))
-        >
-          {skill.to_string()}
-        </div>
-      }
-    })
-    .collect_view();
+  let mut skill_components = skills.iter().enumerate().map(|(idx, skill)| {
+    view! {
+      <div
+        class=move || {
+          display_class(
+            match animating() {
+              None => "hidden",
+              Some(animating) => if animating >= idx { "block" } else { "hidden" }
+            },
+          )
+        }
+        on:animationend=move |_| set_animating(Some(idx + 1))
+      >
+        <SkillCard skill=skill.to_string() />
+      </div>
+    }
+  });
 
-  view! { <div class="flex flex-row gap-1">{skill_components}</div> }
+  const ROW_LENGTH: usize = 8;
+
+  let mut skills_and_lines = Vec::new();
+
+  loop {
+    let skills = skill_components.by_ref().take(ROW_LENGTH).collect_view();
+    let len = skills.len();
+
+    skills_and_lines.push(view! {
+      {skills}
+      <hr class="col-span-8" />
+    });
+
+    if len < ROW_LENGTH {
+      break;
+    }
+  }
+
+  view! {
+    <h2>Skills</h2>
+    <div class="grid grid-cols-8 gap-1 grid-rows-[40px_auto_40px_auto_40px]">
+      {skills_and_lines.collect_view()}
+    </div>
+  }
+}
+
+#[component]
+fn SkillCard(skill: String) -> impl IntoView {
+  view! { <div>{skill}</div> }
 }
