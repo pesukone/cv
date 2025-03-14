@@ -22,6 +22,7 @@ pub fn Skills() -> impl IntoView {
     "React",
     "Redux",
     "REST",
+    "Agile",
     "GraphQL",
     "Node.js",
     "SQL",
@@ -33,6 +34,7 @@ pub fn Skills() -> impl IntoView {
     "Go",
     "Rust",
     "Tailwind",
+    "Git",
   ];
 
   Effect::new(move |_| {

@@ -1,6 +1,7 @@
 use crate::i18n::*;
 use crate::skills::Skills;
 use leptos::prelude::*;
+use leptos_icons::Icon;
 use leptos_meta::{provide_meta_context, MetaTags, Stylesheet, Title};
 use leptos_router::{
   components::{Route, Router, Routes, A},
@@ -53,10 +54,11 @@ pub fn App() -> impl IntoView {
 #[component]
 fn CV() -> impl IntoView {
   view! {
-    <div class="flex flex-col gap-2 items-center">
+    <div class="flex flex-col gap-2 items-center bg-neutral-100">
       <h1>"CV"</h1>
       <SwitchLang />
       <ParamTest />
+      <Experience />
       <Skills />
       <Certificates />
       <Education />
@@ -118,10 +120,22 @@ fn SwitchLang() -> impl IntoView {
 #[component]
 fn Certificates() -> impl IntoView {
   view! {
-    <div class="w-1/3 border">
-      <h2>Google cloud developer vai mikä olikaan</h2>
+    <h2>sertifikaatit</h2>
+    <Card>
+      <h3>Google cloud developer vai mikä olikaan</h3>
       <h3>6.9.2069</h3>
-      <div>joku kuva/ikoni tähän</div>
+      <div class="self-end w-18 h-18">
+        <Icon icon=icondata::IoRibbonOutline width="100%" height="100%" />
+      </div>
+    </Card>
+  }
+}
+
+#[component]
+fn Card(children: Children) -> impl IntoView {
+  view! {
+    <div class="flex flex-col items-center p-6 w-1/3 bg-white rounded-md shadow-md outline-black/5 outline">
+      {children()}
     </div>
   }
 }
@@ -129,9 +143,57 @@ fn Certificates() -> impl IntoView {
 #[component]
 fn Education() -> impl IntoView {
   view! {
+    <h2>koulutus</h2>
+    <ol>
+      <li>LuK, tietojenkäsittelytiede, Helsingin yliopisto 2019</li>
+      <li>Etelä-Tapiolan lukio 2015</li>
+    </ol>
+  }
+}
+
+#[component]
+fn Experience() -> impl IntoView {
+  view! {
+    <h2>työkokemus</h2>
+    <ol>
+      <li>Ohjelmistokehittäjä, Taito United Oy 2019-</li>
+      <li>tähän jotain prokkiksista ja teknologioista</li>
+    </ol>
+  }
+}
+
+#[component]
+fn Summary() -> impl IntoView {
+  view! { <h2>lyhyesti</h2> }
+}
+
+#[component]
+fn Languages() -> impl IntoView {
+  view! {
+    <h2>kielet</h2>
     <ul>
-      <li>LuK, tietojenkäsittelytiede, Helsingin yliopisto x.x.2019</li>
-      <li>Etelä-Tapiolan lukio x.x.2015</li>
+      <li>suomi - äidinkieli</li>
+    </ul>
+  }
+}
+
+#[component]
+fn Contact() -> impl IntoView {
+  view! {
+    <h2>Jussi Aalto</h2>
+    <div>sähköposti</div>
+    <div>github jne.</div>
+  }
+}
+
+#[component]
+fn Hobbies() -> impl IntoView {
+  view! {
+    <h2>harrastuksia</h2>
+    <ul>
+      <li>kotipalvelimet</li>
+      <li>pyöräily</li>
+      <li>retkeily</li>
     </ul>
   }
 }

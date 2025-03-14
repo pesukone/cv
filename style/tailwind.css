@@ -1,5 +1,19 @@
 @import "tailwindcss";
 
+@layer base {
+  h1 {
+    font-size: var(--text-2xl);
+  }
+
+  h2 {
+    font-size: var(--text-xl);
+  }
+
+  h3 {
+    font-size: var(--text-lg);
+  }
+}
+
 @theme {
   --animate-wiggle: wiggle 1s ease-in-out infinite;
   @keyframes wiggle {
