@@ -1,7 +1,8 @@
 use crate::i18n::*;
+use crate::qualifications::FormalQualificationsView;
 use crate::skills::Skills;
+use crate::summary::SummaryView;
 use leptos::prelude::*;
-use leptos_icons::Icon;
 use leptos_meta::{provide_meta_context, MetaTags, Stylesheet, Title};
 use leptos_router::{
   components::{Route, Router, Routes, A},
@@ -54,14 +55,18 @@ pub fn App() -> impl IntoView {
 #[component]
 fn CV() -> impl IntoView {
   view! {
-    <div class="flex flex-col gap-2 items-center bg-neutral-100">
-      <h1>"CV"</h1>
+    <div class="flex flex-col gap-2 items-center bg-neutral-100 scroll-smooth">
       <SwitchLang />
       <ParamTest />
+
+      <SummaryView />
+
       <Experience />
       <Skills />
-      <Certificates />
-      <Education />
+
+      <FormalQualificationsView />
+
+      <Hobbies />
     </div>
   }
 }
@@ -118,40 +123,6 @@ fn SwitchLang() -> impl IntoView {
 }
 
 #[component]
-fn Certificates() -> impl IntoView {
-  view! {
-    <h2>sertifikaatit</h2>
-    <Card>
-      <h3>Google cloud developer vai mikä olikaan</h3>
-      <h3>6.9.2069</h3>
-      <div class="self-end w-18 h-18">
-        <Icon icon=icondata::IoRibbonOutline width="100%" height="100%" />
-      </div>
-    </Card>
-  }
-}
-
-#[component]
-fn Card(children: Children) -> impl IntoView {
-  view! {
-    <div class="flex flex-col items-center p-6 w-1/3 bg-white rounded-md shadow-md outline-black/5 outline">
-      {children()}
-    </div>
-  }
-}
-
-#[component]
-fn Education() -> impl IntoView {
-  view! {
-    <h2>koulutus</h2>
-    <ol>
-      <li>LuK, tietojenkäsittelytiede, Helsingin yliopisto 2019</li>
-      <li>Etelä-Tapiolan lukio 2015</li>
-    </ol>
-  }
-}
-
-#[component]
 fn Experience() -> impl IntoView {
   view! {
     <h2>työkokemus</h2>
@@ -160,11 +131,6 @@ fn Experience() -> impl IntoView {
       <li>tähän jotain prokkiksista ja teknologioista</li>
     </ol>
   }
-}
-
-#[component]
-fn Summary() -> impl IntoView {
-  view! { <h2>lyhyesti</h2> }
 }
 
 #[component]

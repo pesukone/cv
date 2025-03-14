@@ -1,5 +1,7 @@
 pub mod app;
+pub mod qualifications;
 pub mod skills;
+pub mod summary;
 
 leptos_i18n::load_locales!();
 
