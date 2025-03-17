@@ -3,6 +3,7 @@ use crate::qualifications::FormalQualificationsView;
 use crate::skills::Skills;
 use crate::summary::SummaryView;
 use leptos::prelude::*;
+use leptos_icons::Icon;
 use leptos_meta::{provide_meta_context, MetaTags, Stylesheet, Title};
 use leptos_router::{
   components::{Route, Router, Routes, A},
@@ -57,7 +58,7 @@ fn CV() -> impl IntoView {
   view! {
     <div class="flex flex-col gap-2 items-center bg-neutral-100 scroll-smooth">
       <SwitchLang />
-      <ParamTest />
+      <h1>CV</h1>
 
       <SummaryView />
 
@@ -115,9 +116,12 @@ fn SwitchLang() -> impl IntoView {
   view! {
     <A
       href=format!("/?lang={}", lang)
-      attr:class="text-medium text-blue-600 dark:text-blue-500 hover:underline"
+      attr:class="flex border-2 items-center gap-1 p-1 rounded-lg cursor-pointer self-end fixed top-5 right-8"
     >
-      {t!(i18n, test_msg)}
+      <div class="w-4 h-4">
+        <Icon icon=icondata::IoLanguage width="100%" height="100%" />
+      </div>
+      {lang}
     </A>
   }
 }
