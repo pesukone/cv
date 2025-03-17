@@ -1,4 +1,5 @@
 pub mod app;
+pub mod components;
 pub mod qualifications;
 pub mod skills;
 pub mod summary;

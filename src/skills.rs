@@ -1,18 +1,43 @@
+use crate::components::Card;
 use leptos::prelude::*;
 use leptos::{view, IntoView};
 use std::time::Duration;
 
 fn display_class(class: &str) -> &str {
   match class {
-    "hidden" => "hidden slide-2",
-    "block" => "block slide-2",
+    "hidden" => "hidden h-fit slide-2",
+    "block" => "block h-fit slide-2",
     _ => "hidden slide-2",
   }
 }
 
 #[island]
+fn SkillCard(idx: usize, skill: String) -> impl IntoView {
+  let animating = expect_context::<ReadSignal<Option<usize>>>();
+  let set_animating = expect_context::<WriteSignal<Option<usize>>>();
+
+  view! {
+    <div
+      class=move || {
+        display_class(
+          match animating() {
+            None => "hidden",
+            Some(animating) => if animating >= idx { "block" } else { "hidden" }
+          },
+        )
+      }
+      on:animationend=move |_| set_animating(Some(idx + 1))
+    >
+      <Card>{skill}</Card>
+    </div>
+  }
+}
+
+#[island]
 pub fn Skills() -> impl IntoView {
-  let (animating, set_animating) = signal(None);
+  let (animating, set_animating) = signal(None::<usize>);
+  provide_context(animating);
+  provide_context(set_animating);
 
   let skills = vec![
     "JavaScript",
@@ -46,22 +71,8 @@ pub fn Skills() -> impl IntoView {
     );
   });
 
-  let mut skill_components = skills.iter().enumerate().map(|(idx, skill)| {
-    view! {
-      <div
-        class=move || {
-          display_class(
-            match animating() {
-              None => "hidden",
-              Some(animating) => if animating >= idx { "block" } else { "hidden" }
-            },
-          )
-        }
-        on:animationend=move |_| set_animating(Some(idx + 1))
-      >
-        <SkillCard skill=skill.to_string() />
-      </div>
-    }
+  let mut skill_cards = skills.into_iter().enumerate().map(|(idx, skill)| {
+    view! { <SkillCard idx=idx skill=skill.to_string() /> }
   });
 
   const ROW_LENGTH: usize = 8;
@@ -69,7 +80,7 @@ pub fn Skills() -> impl IntoView {
   let mut skills_and_lines = Vec::new();
 
   loop {
-    let skills = skill_components.by_ref().take(ROW_LENGTH).collect_view();
+    let skills = skill_cards.by_ref().take(ROW_LENGTH).collect_view();
     let len = skills.len();
 
     skills_and_lines.push(view! {
@@ -84,13 +95,8 @@ pub fn Skills() -> impl IntoView {
 
   view! {
     <h2>Skills</h2>
-    <div class="grid grid-cols-8 gap-1 grid-rows-[40px_auto_40px_auto_40px]">
+    <div class="grid grid-cols-8 gap-1 grid-rows-[72px_auto_72px_auto_72px]">
       {skills_and_lines.collect_view()}
     </div>
   }
-}
-
-#[component]
-fn SkillCard(skill: String) -> impl IntoView {
-  view! { <div>{skill}</div> }
 }

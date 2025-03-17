@@ -1,3 +1,4 @@
+use crate::components::Card;
 use leptos::prelude::*;
 use leptos_icons::Icon;
 
@@ -33,14 +34,5 @@ fn Education() -> impl IntoView {
       <li>LuK, tietojenkäsittelytiede, Helsingin yliopisto 2019</li>
       <li>Etelä-Tapiolan lukio 2015</li>
     </ol>
-  }
-}
-
-#[component]
-fn Card(children: Children) -> impl IntoView {
-  view! {
-    <div class="flex flex-col items-center p-6 w-1/3 bg-white rounded-md shadow-md outline-black/5 out line">
-      {children()}
-    </div>
   }
 }
