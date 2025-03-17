@@ -19,6 +19,7 @@ serde = { version = "1.0.217", features = ["derive"] }
 leptos_i18n = { version = "0.5.6", features = ["track_locale_files", "islands", "dynamic_load"] }
 leptos_icons = "0.5.0"
 icondata = "0.5.0"
+leptos-use = "0.15.6"
 
 [features]
 default = ["hydrate", "ssr"]

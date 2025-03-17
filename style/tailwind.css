@@ -25,6 +25,34 @@
       transform: rotate(3deg);
     }
   }
+
+  --animate-fade-out: fade-out 1s forwards;
+  @keyframes fade-out {
+    0% {
+      opacity: 1;
+      display: block;
+    }
+    100% {
+      opacity: 0;
+      display: none;
+    }
+  }
+}
+
+.animate-fade-in {
+  animation-name: fade-in, bounce;
+  animation-duration: 1s, 1s;
+  animation-iteration-count: 1, infinite;
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    display: none;
+  }
+  100% {
+    opacity: 1;
+    display: block;
+  }
 }
 
 @utility slide-* {
