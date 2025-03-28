@@ -7,7 +7,7 @@
 
     rust-overlay.url = "github:oxalica/rust-overlay";
     tailwind-src = {
-      url = "https://github.com/tailwindlabs/tailwindcss/releases/download/v4.0.12/tailwindcss-linux-x64";
+      url = "https://github.com/tailwindlabs/tailwindcss/releases/download/v4.0.17/tailwindcss-linux-x64";
       flake = false;
     };
     rust-tools = {

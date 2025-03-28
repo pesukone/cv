@@ -186,13 +186,13 @@
     "tailwind-src": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-wA6MQkioR23dxNu4n6gWYKc/Hp6OZv6gFMz9uJyw5IE=",
+        "narHash": "sha256-dtRuSClJfhoiVwR/0mgBgWytHTCgLPxBlq0u9om7/Jk=",
         "type": "file",
-        "url": "https://github.com/tailwindlabs/tailwindcss/releases/download/v4.0.12/tailwindcss-linux-x64"
+        "url": "https://github.com/tailwindlabs/tailwindcss/releases/download/v4.0.17/tailwindcss-linux-x64"
       },
       "original": {
         "type": "file",
-        "url": "https://github.com/tailwindlabs/tailwindcss/releases/download/v4.0.12/tailwindcss-linux-x64"
+        "url": "https://github.com/tailwindlabs/tailwindcss/releases/download/v4.0.17/tailwindcss-linux-x64"
       }
     }
   },
