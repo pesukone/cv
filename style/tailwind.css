@@ -55,8 +55,15 @@
   }
 }
 
-@utility slide-* {
-  animation: --value(integer)s slide-in;
+@utility slide {
+  position: relative;
+  transition: left 2s;
+  left: 2000px;
+}
+
+@utility slide-target {
+  position: relative;
+  left: 0px;
 }
 
 @keyframes slide-in {

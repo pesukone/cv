@@ -1,13 +1,15 @@
 use crate::components::Card;
+use leptos::logging::log;
 use leptos::prelude::*;
 use leptos::{view, IntoView};
 use std::time::Duration;
 
 fn display_class(class: &str) -> &str {
   match class {
-    "hidden" => "hidden h-fit slide-2",
-    "block" => "block h-fit slide-2",
-    _ => "hidden slide-2",
+    "hidden" => "h-fit slide",
+    "sliding" => "h-fit slide slide-target",
+    "visible" => "h-fit slide-target",
+    _ => "slide",
   }
 }
 
@@ -22,13 +24,16 @@ fn SkillCard(idx: usize, skill: String) -> impl IntoView {
         display_class(
           match animating() {
             None => "hidden",
-            Some(animating) => if animating >= idx { "block" } else { "hidden" }
+            Some(animating) => if animating >= idx { "sliding" } else { "hidden" }
           },
         )
       }
-      on:animationend=move |_| set_animating(Some(idx + 1))
+      on:transitionend=move |_| {
+        log!("AKJSNDKJASNDKJSAD");
+        set_animating(Some(idx + 1));
+      }
     >
-      <Card>{skill}</Card>
+      {skill}
     </div>
   }
 }
@@ -85,7 +90,7 @@ pub fn Skills() -> impl IntoView {
 
     skills_and_lines.push(view! {
       {skills}
-      <hr class="col-span-8" />
+      <hr class="col-span-8 h-2 bg-black border-none" />
     });
 
     if len < ROW_LENGTH {
@@ -95,7 +100,7 @@ pub fn Skills() -> impl IntoView {
 
   view! {
     <h2>Skills</h2>
-    <div class="grid grid-cols-8 gap-1 grid-rows-[72px_auto_72px_auto_72px]">
+    <div class="grid grid-cols-8 gap-1 grid-rows-[24px_8px_24px_8px_24px]">
       {skills_and_lines.collect_view()}
     </div>
   }
