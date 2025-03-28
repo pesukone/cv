@@ -1,4 +1,10 @@
 {
   "test_msg": "Testi viesti",
-  "second_test": "Toinen testi viesti"
+  "second_test": "Toinen testi viesti",
+  "languages": "kielet",
+  "finnish": "suomi - äidinkieli",
+  "email": "sähköposti",
+  "summary": "lyhyesti",
+  "experience": "työkokemus",
+  "developer": "ohjelmistokehittäjä, Taito United Oy 2019-"
 }

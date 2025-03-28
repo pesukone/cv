@@ -1,4 +1,10 @@
 {
   "test_msg": "Test message",
-  "second_test": "Second test message"
+  "second_test": "Second test message",
+  "languages": "languages",
+  "finnish": "Finnish - native",
+  "email": "email",
+  "summary": "summary",
+  "experience": "experience",
+  "developer": "software developer, Taito United Oy 2019-"
 }
